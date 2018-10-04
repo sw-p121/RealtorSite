@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RealtorSite.Data;
 
 namespace RealtorSite
 {
@@ -22,6 +24,9 @@ namespace RealtorSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<RealtorSiteDBContext>(options =>
+                options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=RealtorSite;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
