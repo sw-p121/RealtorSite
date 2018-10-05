@@ -18,9 +18,20 @@ namespace RealtorSite.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
+        //public async Task<IActionResult> Index(string searchString)
+        //{
+        //    var listings = from l in _db.Listings
+        //                   select l;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        listings = listings.Where(s => s.City.Contains(searchString));
+        //    }
+        //    return View(await listings.ToListAsync());
+        //}
+        public async Task<IActionResult> Index(ListingSearchModel searchModel)
         {
-            var listings = _db.Listings.ToList();
+            var listings = GetListings(searchModel).ToList();
             return View(listings);
         }
 
@@ -157,6 +168,26 @@ namespace RealtorSite.Controllers
                 return NotFound();
             }
             return View(listing);
+        }
+
+
+        public IQueryable<Listing> GetListings(ListingSearchModel searchModel)
+        {
+            var result = _db.Listings.AsQueryable();
+            if (searchModel != null)
+            {
+                if (!string.IsNullOrEmpty(searchModel.City))
+                    result = result.Where(x => x.City.Contains(searchModel.City));
+                if (searchModel.Bedrooms.HasValue)
+                    result = result.Where(x => x.Bedrooms == searchModel.Bedrooms);
+                if (searchModel.Bathrooms.HasValue)
+                    result = result.Where(x => x.Bathrooms == searchModel.Bathrooms);
+                if (searchModel.SquareFeetFrom.HasValue)
+                    result = result.Where(x => x.SquareFeet >= searchModel.SquareFeetFrom);
+                if (searchModel.SquareFeetTo.HasValue)
+                    result = result.Where(x => x.SquareFeet <= searchModel.SquareFeetTo);
+            }
+            return result;
         }
     }
 }

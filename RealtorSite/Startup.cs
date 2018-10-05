@@ -24,8 +24,8 @@ namespace RealtorSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<RealtorSiteDBContext>(options =>
-                options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=RealtorSite;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            services.AddDbContext<RealtorSiteDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RealtorSiteDBContext")));
+
 
         }
 

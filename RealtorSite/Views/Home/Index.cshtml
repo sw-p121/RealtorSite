@@ -4,26 +4,34 @@
     ViewData["Title"] = "Listings";
 }
 
-<h2>Index</h2>
-
+<h2>Listings</h2>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Listing</a>
+    <br />
+    <br />
 </p>
+<p>
+    Filter Listings
+    <form asp-controller="Home" asp-action="Index">
+        @Html.Partial("_ListingSearch", new ListingSearchModel())
+    </form>
+</p>
+
 <table class="table">
     <thead>
         <tr>
             @*<th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Mls)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.Street1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Street2)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Street1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Street2)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.City)
             </th>
@@ -34,8 +42,8 @@
                 @Html.DisplayNameFor(model => model.Zipcode)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.Neighborhood)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Neighborhood)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.SalesPrice)
             </th>
@@ -46,83 +54,86 @@
                 @Html.DisplayNameFor(model => model.Bedrooms)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.Photos)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Photos)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Bathrooms)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.GarageSize)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.GarageSize)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.SquareFeet)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.LotSize)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.LotSize)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mls)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Street1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street2)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zipcode)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Neighborhood)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.SalesPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateListed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bedrooms)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Photos)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Bathrooms)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.GarageSize)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.SquareFeet)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.LotSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mls)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Street1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Street2)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zipcode)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Neighborhood)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateListed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bedrooms)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Photos)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bathrooms)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.GarageSize)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.SquareFeet)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.LotSize)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
+
 </table>
+
